@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS&M Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+        </div>
+        <div id="auth-buttons">
+            <a id="sign-in-btn" href="login.html">Sign In</a>
+            <button id="sign-out-btn" onclick="signOut()">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Blog Header -->
+    <div class="blog-header">
+        <h1>PCS&M Blog</h1>
+        <p>Stay connected with our latest articles on holistic wellness, astrology, and community insights.</p>
+    </div>
+
+    <!-- Blog Posts -->
+    <div class="blog-posts">
+        <!-- Post 1 -->
+        <div class="post">
+            <img src="https://i.ibb.co/dkybBk7/b13b5e-0be07f61f0924e78ab4f35027bd82ec1-mv2.webp" alt="Post Image 1">
+            <div class="post-content">
+                <h3>Integrated Recovery Practices</h3>
+                <p>Using Ayurvedic strategies for Vata season...</p>
+                <button onclick="window.location.href='blog-details.html?post=1'">Read More</button>
+            </div>
+        </div>
+        <!-- Post 2 -->
+        <div class="post">
+            <img src="https://i.ibb.co/YW2MYhx" alt="Post Image 2">
+            <div class="post-content">
+                <h3>Scorpio Season: Surrender to Transformation</h3>
+                <p>Embrace change and growth this Scorpio season...</p>
+                <button onclick="window.location.href='blog-details.html?post=2'">Read More</button>
+            </div>
+        </div>
+        <!-- Post 3 -->
+        <div class="post">
+            <img src="https://i.ibb.co/YW2MYhx" alt="Post Image 3">
+            <div class="post-content">
+                <h3>The Miracle of Water</h3>
+                <p>Discover how water can change your life...</p>
+                <button onclick="window.location.href='blog-details.html?post=3'">Read More</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle user authentication status
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('loggedIn');
+            if (isLoggedIn) {
+                document.getElementById('sign-in-btn').style.display = 'none';
+                document.getElementById('sign-out-btn').style.display = 'inline-block';
+            } else {
+                document.getElementById('sign-in-btn').style.display = 'inline-block';
+                document.getElementById('sign-out-btn').style.display = 'none';
+            }
+        };
+
+        function signOut() {
+            localStorage.removeItem('loggedIn');
+            alert('Signed out successfully!');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

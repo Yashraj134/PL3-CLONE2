@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Appointments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Appointments</h1>
+  <ul id="appointmentList"></ul>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token');
+
+      fetch('/appointments/list', {
+        method: 'GET',
+        headers: {
+          'Authorization': token
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        const appointmentList = document.getElementById('appointmentList');
+        data.forEach(appointment => {
+          const li = document.createElement('li');
+          li.textContent = `${appointment.patient_name} - ${appointment.doctor_name} - ${appointment.appointment_date}`;
+          appointmentList.appendChild(li);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <div class="blog-details">
+        <h1 id="blog-title">Blog Title</h1>
+        <p id="blog-content">Here is the full content of the blog...</p>
+        <img id="blog-image" src="https://i.ibb.co/QYG89YX" alt="Blog Image">
+
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <h2>Comments</h2>
+            <textarea id="comment-input" rows="4" placeholder="Write a comment..."></textarea>
+            <button onclick="submitComment()">Submit</button>
+            <ul id="comments-list"></ul>
+        </div>
+
+        <!-- Rating Section -->
+        <div class="rating-section">
+            <h2>Rate this Blog</h2>
+            <span class="star" onclick="rate(1)">★</span>
+            <span class="star" onclick="rate(2)">★</span>
+            <span class="star" onclick="rate(3)">★</span>
+            <span class="star" onclick="rate(4)">★</span>
+            <span class="star" onclick="rate(5)">★</span>
+            <p id="rating-result"></p>
+        </div>
+    </div>
+
+    <script>
+        // Simple rating system
+        function rate(stars) {
+            document.getElementById('rating-result').innerText = `You rated this blog ${stars} stars!`;
+        }
+
+        // Comments functionality
+        function submitComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentList = document.getElementById('comments-list');
+            
+            if (commentInput.value.trim() !== "") {
+                const li = document.createElement('li');
+                li.textContent = commentInput.value;
+                commentList.appendChild(li);
+                commentInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

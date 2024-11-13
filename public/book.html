@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Appointment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      width: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Book an Appointment</h1>
+  <form id="appointmentForm">
+    <label for="patientName">Patient Name:</label>
+    <input type="text" id="patientName" name="patientName" required>
+    <label for="doctorName">Doctor Name:</label>
+    <input type="text" id="doctorName" name="doctorName" required>
+    <label for="appointmentDate">Appointment Date:</label>
+    <input type="date" id="appointmentDate" name="appointmentDate" required>
+    <button type="submit">Book Appointment</button>
+  </form>
+  <script>
+    document.getElementById('appointmentForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const patientName = document.getElementById('patientName').value;
+      const doctorName = document.getElementById('doctorName').value;
+      const appointmentDate = document.getElementById('appointmentDate').value;
+      const token = localStorage.getItem('token');
+
+      fetch('/book/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        },
+        body: JSON.stringify({ patientName, doctorName, appointmentDate })
+      })
+      .then(response => response.text())
+      .then(data => alert(data))
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>
