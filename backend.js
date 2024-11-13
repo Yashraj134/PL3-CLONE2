@@ -239,3 +239,4 @@ app.listen(PORT, () => {
 //     password VARCHAR(255),
 //     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 // );
+// npm install express mysql2 bcryptjs express-session dotenv
